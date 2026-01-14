@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แจกเครดิตฟรี 100฿</title>
+
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  height:100%;
+  background:#000;
+  font-family:'Kanit',Arial,sans-serif;
+}
+
+.container{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:16px;
+}
+
+img{
+  width:100%;
+  max-width:360px;
+  border-radius:18px;
+  box-shadow:0 0 30px rgba(0,180,255,.9);
+}
+
+h1{
+  margin:14px 0 6px;
+  color:#00c8ff;
+  font-weight:900;
+}
+
+.sub{
+  color:#ffffff;
+  font-size:14px;
+}
+
+.urgency{
+  margin-top:8px;
+  color:#ffd700;
+  font-size:13px;
+}
+
+button{
+  margin-top:22px;
+  padding:16px 42px;
+  font-size:18px;
+  font-weight:900;
+  color:#000;
+  background:linear-gradient(90deg,#00c8ff,#00ffcc);
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+}
+
+#status{
+  margin-top:12px;
+  color:#00ffcc;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <img src="https://img5.pic.in.th/file/secure-sv1/9d04f6c8-2bd3-4465-97f6-53b54d14e123.jpg" alt="promo">
+
+  <h1>แจกเครดิตฟรี 100฿</h1>
+  <div class="sub">รับได้ทันที • ไม่ต้องฝากก่อน</div>
+  <div class="urgency">เปิดตลอด 24 ชั่วโมง • สมาชิกเก่า–ใหม่รับได้</div>
+
+  <button onclick="shareFlex()">▶ รับสิทธิ์ทันที</button>
+  <div id="status">✅ แชร์สำเร็จ กำลังพาไปต่อ…</div>
+
+</div>
+
+<script>
+const LIFF_ID = "2008689015-J8ITJgp3";
+const MAIN_URL = "https://lin.ee/5TMztcf";
+const BACKUP_URL = "https://opens24hr.com";
+
+async function initLIFF(){
+  await liff.init({ liffId: LIFF_ID });
+  if(!liff.isLoggedIn()){
+    liff.login();
+  }
+}
+initLIFF();
+
+async function shareFlex(){
+  if(!liff.isApiAvailable("shareTargetPicker")){
+    alert("กรุณาเปิดผ่านแอป LINE");
+    return;
+  }
+
+  const flex = {
+    type:"flex",
+    altText:"แจกเครดิตฟรี 100฿ รับได้เลย",
+    contents:{
+      type:"bubble",
+      size:"giga",
+      hero:{
+        type:"image",
+        url:"https://img5.pic.in.th/file/secure-sv1/9d04f6c8-2bd3-4465-97f6-53b54d14e123.jpg",
+        size:"full",
+        aspectRatio:"1:1",
+        aspectMode:"cover"
+      },
+      body:{
+        type:"box",
+        layout:"vertical",
+        backgroundColor:"#061b2d",
+        paddingAll:"12px",
+        contents:[
+          {
+            type:"text",
+            text:"แจกเครดิตฟรี 100฿",
+            weight:"bold",
+            size:"lg",
+            align:"center",
+            color:"#00c8ff"
+          },
+          {
+            type:"text",
+            text:"รับได้เลย ไม่ต้องฝากก่อน",
+            size:"sm",
+            align:"center",
+            color:"#ffffff",
+            margin:"sm"
+          },
+          {
+            type:"text",
+            text:"เปิด 24 ชั่วโมง • สมาชิกเก่า–ใหม่",
+            size:"xs",
+            align:"center",
+            color:"#ffd700",
+            margin:"sm"
+          }
+        ]
+      },
+      footer:{
+        type:"box",
+        layout:"vertical",
+        spacing:"sm",
+        paddingAll:"14px",
+        contents:[
+          {
+            type:"button",
+            style:"primary",
+            color:"#00c8ff",
+            action:{
+              type:"uri",
+              label:"▶ รับเครดิตฟรีตอนนี้",
+              uri: MAIN_URL
+            }
+          },
+          {
+            type:"button",
+            style:"secondary",
+            action:{
+              type:"uri",
+              label:"เข้าสู่เว็บไซต์",
+              uri: BACKUP_URL
+            }
+          }
+        ]
+      }
+    }
+  };
+
+  const res = await liff.shareTargetPicker([flex]);
+  if(res){
+    document.getElementById("status").style.display="block";
+    setTimeout(()=>{
+      liff.openWindow({
+        url: MAIN_URL,
+        external:true
+      });
+    },1200);
+  }
+}
+</script>
+</body>
+</html>
