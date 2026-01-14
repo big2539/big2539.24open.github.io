@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>แจกเครดิตฟรี 100฿</title>
 
+<!-- LIFF SDK -->
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
 <style>
@@ -60,6 +61,13 @@ button{
   border:none;
   border-radius:50px;
   cursor:pointer;
+  animation:pulse 1.4s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(0,200,255,.8)}
+  70%{box-shadow:0 0 0 18px rgba(0,200,255,0)}
+  100%{box-shadow:0 0 0 0 rgba(0,200,255,0)}
 }
 
 #status{
@@ -73,7 +81,7 @@ button{
 <body>
 <div class="container">
 
-  <img src="https://img5.pic.in.th/file/secure-sv1/9d04f6c8-2bd3-4465-97f6-53b54d14e123.jpg" alt="promo">
+  <img src="https://img2.pic.in.th/image-1857cb054166ee4769.png">
 
   <h1>แจกเครดิตฟรี 100฿</h1>
   <div class="sub">รับได้ทันที • ไม่ต้องฝากก่อน</div>
@@ -111,7 +119,7 @@ async function shareFlex(){
       size:"giga",
       hero:{
         type:"image",
-        url:"https://img5.pic.in.th/file/secure-sv1/9d04f6c8-2bd3-4465-97f6-53b54d14e123.jpg",
+        url:"https://img2.pic.in.th/image-1857cb054166ee4769.png",
         size:"full",
         aspectRatio:"1:1",
         aspectMode:"cover"
@@ -153,25 +161,37 @@ async function shareFlex(){
         layout:"vertical",
         spacing:"sm",
         paddingAll:"14px",
+        backgroundColor:"#0B1C2D",
         contents:[
           {
             type:"button",
             style:"primary",
-            color:"#00c8ff",
+            height:"md",
+            color:"#00C853",
             action:{
               type:"uri",
-              label:"▶ รับเครดิตฟรีตอนนี้",
-              uri: MAIN_URL
+              label:"✅ รับเครดิตฟรี 100",
+              uri:"https://lin.ee/5TMztcf"
             }
           },
           {
             type:"button",
-            style:"secondary",
+            style:"primary",
+            height:"md",
+            color:"#FFC107",
             action:{
               type:"uri",
-              label:"เข้าสู่เว็บไซต์",
-              uri: BACKUP_URL
+              label:"🎰 เข้าเล่น 24 ชม.",
+              uri:"https://opens24hr.com"
             }
+          },
+          {
+            type:"text",
+            text:"🔥 เปิดบริการตลอด 24 ชั่วโมง",
+            size:"xs",
+            color:"#FFFFFF",
+            align:"center",
+            margin:"md"
           }
         ]
       }
@@ -190,5 +210,6 @@ async function shareFlex(){
   }
 }
 </script>
+
 </body>
 </html>
